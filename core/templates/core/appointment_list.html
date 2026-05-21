@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AgendaMed - Minhas Consultas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/agendamento.css' %}">
+{% endblock %}
+
+{% block header %}
+{% include 'partials/header.html' %}
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="content">
+        <h1 class="mt-5">Minhas Consultas</h1>
+        <hr class="border border-white border-2 opacity-75">
+        <p class="welcome">Ola, <b>{{ user.get_full_name|default:user.username }}</b>! Veja suas consultas agendadas.</p>
+
+        <a href="{% url 'appointment_create' %}" class="btn btn-primary mb-4"><i class="bi bi-plus-circle"></i> Agendar Nova Consulta</a>
+
+        {% if appointments %}
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Horario</th>
+                        <th>Especialidade</th>
+                        <th>Medico</th>
+                        <th>Status</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in appointments %}
+                    <tr>
+                        <td>{{ app.date|date:"d/m/Y" }}</td>
+                        <td>{{ app.time|time:"H:i" }}</td>
+                        <td>{{ app.specialty.name|default:"-" }}</td>
+                        <td>Dr(a). {{ app.doctor.name|default:"-" }}</td>
+                        <td>
+                            {% if app.status == 'agendado' %}
+                            <span class="badge bg-primary">Agendado</span>
+                            {% elif app.status == 'confirmado' %}
+                            <span class="badge bg-success">Confirmado</span>
+                            {% elif app.status == 'cancelado' %}
+                            <span class="badge bg-danger">Cancelado</span>
+                            {% elif app.status == 'realizado' %}
+                            <span class="badge bg-secondary">Realizado</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if app.can_cancel %}
+                            <form action="{% url 'appointment_cancel' app.pk %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-x-circle"></i> Cancelar</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> Voce ainda nao possui consultas agendadas.
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

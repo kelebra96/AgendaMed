@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AgendaMed - Agendamento de Consultas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block header %}
+{% include 'partials/header_home.html' %}
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="content">
+        <h2>Agende sua consulta medica online</h2>
+        <p>Cuide da sua saude com praticidade. Encontre o especialista ideal e agende sua consulta em poucos cliques.</p>
+        <a href="{% url 'appointment_create' %}" class="btn btn-primary btn-lg">Agendar Consulta</a>
+    </div>
+</section>
+{% endblock %}

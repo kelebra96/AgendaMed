@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../images/home.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #000000;
+    min-height: 100vh; /* Garante no mínimo 100% da altura da viewport */
+    display: flex;
+    flex-direction: column; /* Adiciona layout flexível para o conteúdo */
+}
+.container{
+    width: 100%;
+    margin: 0 auto;
+    padding:5px;
+}
+
+.container 
+.btn {
+    min-width: 200px;
+    text-align: center;
+}
+
+.btn {
+    min-width: 300px;
+    text-align: center;
+}
+
+
+/* Define a cor do texto dos títulos e horários dos eventos */
+.fc-event-title, .fc-event-time {
+    color: #fff !important;
+}
+
+/* Define a cor dos números dos dias do calendário */
+.fc-daygrid-day-number {
+    color: #000 !important;
+    font-size: 1.2em;
+}
+
+/* Define a cor do texto dos dias da semana (ex: Seg, Ter, Qua) */
+.fc .fc-col-header-cell-cushion {
+    color: #000 !important;
+    text-transform: capitalize;
+}
+
+.fc-daygrid-body table{
+    border:1px solid#000
+}
+
+/* Define a cor das linhas horizontais e verticais da grade */
+.fc-daygrid-body tr td {
+    border-right: 1px solid #000 !important; /* Linhas verticais */
+    border-bottom: 1px solid #000 !important; /* Linhas horizontais */
+}
+
+/* Remove a borda direita da última célula de cada linha para evitar duplicidade */
+.fc-daygrid-body tr td:last-child {
+    border-right: none !important;
+}
+
+/* Remove a borda inferior da última linha */
+.fc-daygrid-body tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* Define a cor das linhas do cabeçalho (dias da semana) */
+.fc .fc-col-header-cell {
+    border-right: 1px solid #000 !important; /* Linhas verticais no cabeçalho */
+    border-bottom: 1px solid #000 !important; /* Linhas horizontais no cabeçalho */
+}
+
+/* Remove a borda direita da última célula do cabeçalho */
+.fc .fc-col-header-cell:last-child {
+    border-right: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
